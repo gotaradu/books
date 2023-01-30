@@ -2,8 +2,9 @@ import { useState } from 'react'
 
 const Login = (props) => {
   const [passErr, setpassErr] = useState(false)
-  const handleLogin = (event) => {
+  const handler = (event) => {
     event.preventDefault()
+    props.fetchUserhandler()
   }
   return (
     <div className="flex-auto flex justify-center items-center  bg-gradient-radial from-verzisor to-back lg:container lg:w-auto   ">
@@ -18,9 +19,9 @@ const Login = (props) => {
           <input className="flex-1 w-4/5 px-3 m-1 rounded-lg focus:border-verde border-4 mt-3 mb-3 "></input>
         </div>
         <span className="text-6xl rounded-lg hover:bg-verde  block text-center">
-          <a href="/" className="  leading-relaxed" onClick={handleLogin}>
+          {/* <button className="leading-relaxed" onClick={handler}>
             Login
-          </a>
+          </button> */}
         </span>
       </form>
     </div>

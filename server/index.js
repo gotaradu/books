@@ -1,5 +1,5 @@
 //core modules
-
+const bodyParser = require('body-parser')
 //third party modules
 const express = require('express')
 
@@ -17,10 +17,14 @@ const corsOptions = {
   optionSuccessStatus: 200,
 }
 
+const registerRoutes = require('./routes/register')
 app.use(cors(corsOptions))
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.json(['radu', 'cristian'])
 })
+
+app.use(registerRoutes)
+
 //server.listen(3000)
 app.listen(4000, () => {
   console.log('server started on port')
