@@ -30,6 +30,7 @@ function App() {
   // }, [])
   // console.log(user)
   console.log('reloaded')
+
   const fetchUserHandler = async () => {
     const response = await fetch('http://localhost:4000/register', {
       method: 'POST',
@@ -45,21 +46,16 @@ function App() {
 
   return (
     <div>
-      <button onClick={fetchUserHandler} className="bg-verde h-30 w-30">
-        LOGIN
-      </button>
       <nav className="bg-verde">
         <h1 className="text-6xl text-center "> Welcome Back</h1>
       </nav>
-      {users.map((user) => (
-        <p>{user}</p>
-      ))}
+
       <button onClick={fetchUserHandler} className="bg-verde"></button>
       <LayoutLogin>
         <div className=" hidden lg:block">
           <img src={owl} className="object-contain max-h-screen w-3/4 "></img>
         </div>
-        <Login fetchUserhandler={fetchUserHandler} />
+        <Login />
       </LayoutLogin>
     </div>
   )

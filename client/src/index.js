@@ -11,6 +11,8 @@ import {
 } from 'react-query'
 import PostsPage from './pages/PostsPage'
 
+import RegisterPage from './pages/RegisterPage'
+
 const router = createBrowserRouter([
   {
     path: '/login',
@@ -18,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/register',
-    element: <div>register page</div>,
+    element: <RegisterPage />,
   },
   {
     path: '/posts',
