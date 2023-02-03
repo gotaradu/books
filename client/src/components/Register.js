@@ -43,14 +43,14 @@ const checkPassword = (value) => {
 }
 
 const checkConfirmedPassword = (value, password) => {
-  if (value !== password && value.length !== password.length) {
+  if (value === password) return { enteredValueIsValid: true }
+  else
     return {
       enteredValueIsValid: false,
       errorMessage: 'Passwords do not match',
     }
-  }
-  return { enteredValueIsValid: true }
 }
+
 const Register = () => {
   const {
     value: enteredUserName,
