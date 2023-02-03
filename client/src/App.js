@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Login from './components/Login'
 import LayoutLogin from './Layout/LayoutLogin'
 
@@ -10,8 +9,8 @@ const user = {
   date: Date.now(),
 }
 function App() {
-  const [users, setUsers] = useState([])
-  const [userName, setUserName] = useState([])
+  // const [users, setUsers] = useState([])
+  // const [userName, setUserName] = useState([])
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -53,7 +52,11 @@ function App() {
       <button onClick={fetchUserHandler} className="bg-verde"></button>
       <LayoutLogin>
         <div className=" hidden lg:block">
-          <img src={owl} className="object-contain max-h-screen w-3/4 "></img>
+          <img
+            src={owl}
+            className="object-contain max-h-screen w-3/4 "
+            alt="img"
+          ></img>
         </div>
         <Login />
       </LayoutLogin>

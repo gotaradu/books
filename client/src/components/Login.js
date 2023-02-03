@@ -1,8 +1,4 @@
-import { useState } from 'react'
-
 const Login = () => {
-  const [passErr, setpassErr] = useState(false)
-
   return (
     <div className="flex-auto flex justify-center items-center bg-gradient-radial from-verzisor to-back lg:container lg:w-auto   ">
       <form className="items-center">
