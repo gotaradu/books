@@ -1,8 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const validation = require('../util/registerValidation')
 const router = express.Router()
 // mongodb+srv://pocneste:QPwJjvGXkfLIpGaF@cluster0.jnxf09f.mongodb.net/?retryWrites=true&w=majority
+require('dotenv').config()
+
 router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: false }))
 mongoose.set('strictQuery', false)
@@ -18,15 +21,19 @@ const userSchema = new Schema({
   age: String,
   email: String,
   password: String,
+  confirmPassword: String,
   date: Date,
 })
 const UserModel = mongoose.model('users', userSchema)
 
-router.post('/register', (req, res, next) => {
+router.post('/register', async (req, res, next) => {
+  const newPassword = await validation.encryptPassword(req.body.password)
+  console.log(newPassword + ' Here!')
   const data = new UserModel(req.body)
-  console.log(req.body)
-  console.log(data)
+  data.password = newPassword
+  data.confirmPassword = newPassword
   data.date = Date.now()
+  console.log(data + ' Data here')
   data
     .save()
     .then((item) => {

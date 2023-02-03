@@ -130,6 +130,7 @@ const Register = () => {
       age: enteredAge,
       email: enteredEmail,
       password: enteredPassword,
+      confirmPassword: enteredConfirmPassword,
     }
     console.log(data)
     const fetchUserHandler = async (data) => {

@@ -1,0 +1,24 @@
+require('dotenv').config()
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const KEY = process.env.SECRET_KEY
+
+// check again the client side validations (client can avoid that validation)
+// check if username already exists in database
+// check if email is already taken
+// encrypt password
+// ...
+
+const checkUsername = () => {}
+const checkBook = () => {}
+const checkAge = () => {}
+const checkEmail = () => {}
+const checkPassowrd = () => {}
+const checkPasswordsMatch = () => {}
+
+const encryptPassword = async (password) => {
+  const encryptedPassword = await bcrypt.hash(password, 5)
+  return encryptedPassword
+}
+
+module.exports = { encryptPassword }
