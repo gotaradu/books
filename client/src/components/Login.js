@@ -48,7 +48,9 @@ const Login = () => {
     enteredEmailReset()
     enteredPasswordReset()
   }
-
+  const registerHandler = () => {
+    navigate('/register')
+  }
   // take inputs from form
   // make a post request with email and pass
   const checkEmail = (value) => {
@@ -118,6 +120,12 @@ const Login = () => {
           className="shadow-xl px-3 flex-auto w-auto rounded-lg m-4  bg-verzisor place-self-center hover:bg-verde hover:cursor-pointer"
         >
           Login
+        </button>
+        <button
+          onClick={registerHandler}
+          className="shadow-xl px-3 flex-auto w-auto rounded-lg m-4  bg-verzisor place-self-center hover:bg-verde hover:cursor-pointer"
+        >
+          Register
         </button>
       </form>
     </div>

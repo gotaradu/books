@@ -4,7 +4,7 @@ import './index.css'
 import App from './App'
 import { RouterProvider } from 'react-router'
 import { createBrowserRouter } from 'react-router-dom'
-
+import HomePage from './pages/HomePage'
 import PostsPage from './pages/PostsPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     path: '/posts',
     element: <PostsPage />,
   },
-  { path: '/', element: <div>Home page</div> },
+  { path: '/', element: <HomePage /> },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
