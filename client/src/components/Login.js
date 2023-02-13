@@ -1,4 +1,5 @@
 import useInput from '../hooks/use-input'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 const styles = {
   label_div: 'shadow-xl px-1 flex flex-col rounded-lg m-5 ',
@@ -11,6 +12,13 @@ const styles = {
 
 const Login = () => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const isAuth = localStorage.getItem('token')
+
+    if (isAuth) navigate('/')
+  }, [])
+
   const loginHandler = (event) => {
     event.preventDefault()
 
