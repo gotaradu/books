@@ -1,7 +1,6 @@
 require('dotenv').config()
-const jwt = require('jsonwebtoken')
+
 const bcrypt = require('bcrypt')
-const KEY = process.env.SECRET_KEY
 
 // check again the client side validations (client can avoid that validation)
 // check if username already exists in database

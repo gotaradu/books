@@ -18,12 +18,14 @@ const corsOptions = {
 }
 
 const registerRoutes = require('./routes/register')
+const loginRoutes = require('./routes/login')
+
 app.use(cors(corsOptions))
 app.get('/', (req, res) => {
   res.json(['radu', 'cristian'])
 })
-
-app.use(registerRoutes)
+app.use(registerRoutes.router)
+app.use(loginRoutes)
 
 //server.listen(3000)
 app.listen(4000, () => {

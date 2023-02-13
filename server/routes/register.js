@@ -47,4 +47,4 @@ router.get('/register', (req, res, next) => {
   res.send('salut')
 })
 
-module.exports = router
+module.exports = module.exports = { router, UserModel }
