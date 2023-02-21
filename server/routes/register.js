@@ -28,20 +28,36 @@ const UserModel = mongoose.model('users', userSchema)
 
 router.post('/register', async (req, res, next) => {
   const newPassword = await validation.encryptPassword(req.body.password)
-  console.log(newPassword + ' Here!')
-  const data = new UserModel(req.body)
-  data.password = newPassword
-  data.confirmPassword = newPassword
-  data.date = Date.now()
-  console.log(data + ' Data here')
-  data
-    .save()
-    .then((item) => {
-      console.log(item)
-    })
-    .catch((err) => {
-      res.status(400).send('unable to save to database')
-    })
+  const userExists = await UserModel.findOne({
+    username: req.body.username,
+  }).exec()
+  const emailExists = await UserModel.findOne({ email: req.body.email }).exec()
+  if (!userExists?.username && !emailExists?.email) {
+    console.log(userExists)
+    const data = new UserModel(req.body)
+    data.password = newPassword
+    data.confirmPassword = newPassword
+    data.date = Date.now()
+    console.log(data + ' Data here')
+
+    data
+      .save()
+      .then((item) => {
+        res.send({})
+      })
+      .catch((err) => {
+        res.status(400).send('unable to save to database')
+        next()
+      })
+  } else {
+    let errorEmail
+    let errorUser
+    if (emailExists) errorEmail = 'email already taken'
+
+    if (userExists) errorUser = 'username already exists'
+
+    res.send({ errors: { errorEmail, errorUser } })
+  }
 })
 router.get('/register', (req, res, next) => {
   res.send('salut')

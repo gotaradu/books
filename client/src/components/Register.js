@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useInput from '../hooks/use-input'
 
 const styles = {
@@ -52,6 +52,16 @@ const checkConfirmedPassword = (value, password) => {
 }
 
 const Register = () => {
+  const [serverErrorUser, setServerErrorUser] = useState('')
+  const [serverErrorEmail, setSErverErrorEmail] = useState('')
+  const onChangeUserNameHandler = (event) => {
+    setServerErrorUser(false)
+    enteredUserNameChangeHandler(event)
+  }
+  const onChangeEmailHandler = (event) => {
+    setSErverErrorEmail(false)
+    enteredEmailChangeHandler(event)
+  }
   const {
     value: enteredUserName,
     enteredValueIsValid: enteredUserNameIsValid,
@@ -146,12 +156,24 @@ const Register = () => {
       return response
     }
     fetchUserHandler(data)
-    enteredUserNameReset()
-    enteredAgeReset()
-    enteredLastBookReadReset()
-    enteredEmailReset()
-    enteredPasswordReset()
-    enteredConfirmPasswordReset()
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.errors) {
+          if (data.errors.errorUser) {
+            setServerErrorUser(data.errors.errorUser)
+          }
+          if (data.errors.errorEmail) {
+            setSErverErrorEmail(data.errors.errorEmail)
+          }
+        } else {
+          enteredUserNameReset()
+          enteredAgeReset()
+          enteredLastBookReadReset()
+          enteredEmailReset()
+          enteredPasswordReset()
+          enteredConfirmPasswordReset()
+        }
+      })
   }
   return (
     <div className=" flex-auto flex justify-center items-center  ">
@@ -168,13 +190,16 @@ const Register = () => {
           {enteredUserNameHasError && (
             <p className="text-xs">{errMessageUsername}</p>
           )}
+          {serverErrorUser && <p className="text-xs">{serverErrorUser}</p>}
           <input
             className={
-              enteredUserNameHasError ? styles.input_wrong : styles.input
+              enteredUserNameHasError || serverErrorUser
+                ? styles.input_wrong
+                : styles.input
             }
             type="text"
             id="username"
-            onChange={enteredUserNameChangeHandler}
+            onChange={onChangeUserNameHandler}
             onBlur={enteredUserNameBlurHandler}
             value={enteredUserName}
           />
@@ -217,10 +242,15 @@ const Register = () => {
             email
           </label>
           {enteredEmailHasError && <p className="text-xs">{errMessageEmail}</p>}
+          {serverErrorEmail && <p className="text-xs">{serverErrorEmail}</p>}
           <input
-            className={enteredEmailHasError ? styles.input_wrong : styles.input}
+            className={
+              enteredEmailHasError || serverErrorEmail
+                ? styles.input_wrong
+                : styles.input
+            }
             type="email"
-            onChange={enteredEmailChangeHandler}
+            onChange={onChangeEmailHandler}
             onBlur={enteredEmailBlurHandler}
             value={enteredEmail}
           />
