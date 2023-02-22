@@ -6,6 +6,10 @@ const PostsList = ({ posts }) => {
     localStorage.removeItem('token')
     navigate('/login')
   }
+  if (!localStorage.getItem('token')) {
+    // check if token is made with secret key
+    return <p>Unauth</p>
+  }
   return (
     <div>
       <h1>Posts </h1>

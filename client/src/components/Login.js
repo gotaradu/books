@@ -1,6 +1,7 @@
 import useInput from '../hooks/use-input'
-import { useEffect } from 'react'
+import { createContext, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../App'
 const styles = {
   label_div: 'shadow-xl px-1 flex flex-col rounded-lg m-5 ',
   input:
@@ -12,7 +13,7 @@ const styles = {
 
 const Login = () => {
   const navigate = useNavigate()
-
+  const contextValue = useContext(AuthContext)
   useEffect(() => {
     const isAuth = localStorage.getItem('token')
 
@@ -24,7 +25,6 @@ const Login = () => {
 
     if (!enteredEmailIsValid) return
     const data = { email: enteredEmail, password: enteredPassword }
-    console.log(data)
 
     const fetchLoginHandler = async () => {
       const response = await fetch('http://localhost:4000/login', {
@@ -38,10 +38,13 @@ const Login = () => {
     }
     fetchLoginHandler(data)
       .then((response) => {
+        contextValue.setUsers(data.email)
+        console.log(contextValue)
         return response.json()
       })
       .then((token) => {
         localStorage.setItem('token', token.token)
+
         navigate('/')
       })
 

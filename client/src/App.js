@@ -1,28 +1,52 @@
-import Login from './components/Login'
-import LayoutLogin from './Layout/LayoutLogin'
+import React, { useCallback, useMemo, useState } from 'react'
 
-import owl from './photo/owl-12.png'
+import './index.css'
+import { RouterProvider } from 'react-router'
+import { createBrowserRouter } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import PostsPage from './pages/PostsPage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
+import { createContext } from 'react'
+import Header from './components/Header'
+const router = createBrowserRouter([
+  {
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
+  },
+  {
+    path: '/posts',
+    element: <PostsPage />,
+  },
+  { path: '/', element: <HomePage /> },
+])
+const initialState = { user: null, setUsers: (user) => {} }
+export const AuthContext = createContext(initialState)
 
 function App() {
-  console.log('reloaded')
+  const [user, setUser] = useState('')
+
+  const contextValue = useMemo(
+    () => ({
+      user,
+      setUser,
+    }),
+    [user, setUser],
+  )
 
   return (
-    <div>
-      <nav className="bg-verde">
-        <h1 className="text-6xl text-center ">Welcome</h1>
-      </nav>
-
-      <LayoutLogin>
-        <div className=" hidden lg:block">
-          <img
-            src={owl}
-            className="object-contain max-h-screen w-3/4 "
-            alt="img"
-          ></img>
-        </div>
-        <Login />
-      </LayoutLogin>
-    </div>
+    <React.StrictMode>
+      <RouterProvider router={router}>
+        <AuthContext.Provider value={contextValue}>
+          <LoginPage />
+          <HomePage />
+        </AuthContext.Provider>
+      </RouterProvider>
+    </React.StrictMode>
   )
 }
 

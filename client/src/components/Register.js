@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import useInput from '../hooks/use-input'
 
 const styles = {
@@ -52,6 +53,7 @@ const checkConfirmedPassword = (value, password) => {
 }
 
 const Register = () => {
+  const navigate = useNavigate('/')
   const [serverErrorUser, setServerErrorUser] = useState('')
   const [serverErrorEmail, setSErverErrorEmail] = useState('')
   const onChangeUserNameHandler = (event) => {
@@ -166,6 +168,7 @@ const Register = () => {
             setSErverErrorEmail(data.errors.errorEmail)
           }
         } else {
+          navigate('/login')
           enteredUserNameReset()
           enteredAgeReset()
           enteredLastBookReadReset()
