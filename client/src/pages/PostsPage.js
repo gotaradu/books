@@ -1,7 +1,14 @@
+import Header from '../components/Header'
+
 const { default: PostsList } = require('../components/PostsList')
 
 const PostsPage = () => {
-  return <PostsList />
+  return (
+    <>
+      <Header />
+      <PostsList />
+    </>
+  )
 }
 
 export default PostsPage

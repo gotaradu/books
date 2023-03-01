@@ -1,5 +1,5 @@
 import useInput from '../hooks/use-input'
-import { createContext, useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../App'
 const styles = {
@@ -18,7 +18,7 @@ const Login = () => {
     const isAuth = localStorage.getItem('token')
 
     if (isAuth) navigate('/')
-  }, [])
+  }, [navigate])
 
   const loginHandler = (event) => {
     event.preventDefault()
@@ -45,7 +45,7 @@ const Login = () => {
       .then((token) => {
         localStorage.setItem('token', token.token)
 
-        navigate('/')
+        navigate('/posts')
       })
 
     enteredEmailReset()

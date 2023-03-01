@@ -2,24 +2,22 @@ import { useNavigate } from 'react-router'
 import { useEffect } from 'react'
 import PostsList from '../components/PostsList'
 import Header from '../components/Header'
-
+import owl from '../photo/owl-12.png'
+import LayoutLogin from '../Layout/LayoutLogin'
 const HomePage = () => {
   return (
     <div>
       <Header />
+      <LayoutLogin>
+        <div className="  hidden lg:block flex-1 m-auto p-3">
+          <img src={owl} className=" h-max w-3/4 "></img>
+        </div>
+        <div className="flex-1 text-center align-bottom m-auto p-3">
+          Welcome
+        </div>
+      </LayoutLogin>
     </div>
   )
 }
 
 export default HomePage
-// useEffect(() => {
-//   const isAuth = localStorage.getItem('token')
-//   if (isAuth) navigate('/posts')
-//   else navigate('/login')
-// }, [])
-
-// const navigate = useNavigate('/')
-// const logoutHandler = () => {
-//   localStorage.removeItem('token')
-//   navigate('/login')
-// }

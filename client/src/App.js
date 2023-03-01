@@ -1,5 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react'
-
+import React, { useMemo, useState } from 'react'
 import './index.css'
 import { RouterProvider } from 'react-router'
 import { createBrowserRouter } from 'react-router-dom'
@@ -8,7 +7,6 @@ import PostsPage from './pages/PostsPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import { createContext } from 'react'
-import Header from './components/Header'
 const router = createBrowserRouter([
   {
     path: '/login',

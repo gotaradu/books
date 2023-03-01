@@ -1,5 +1,4 @@
 import Login from '../components/Login'
-import Header from '../components/Header'
 import LayoutLogin from '../Layout/LayoutLogin'
 
 import owl from '../photo/owl-12.png'
