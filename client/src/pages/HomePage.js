@@ -1,6 +1,3 @@
-import { useNavigate } from 'react-router'
-import { useEffect } from 'react'
-import PostsList from '../components/PostsList'
 import Header from '../components/Header'
 import owl from '../photo/owl-12.png'
 import LayoutLogin from '../Layout/LayoutLogin'

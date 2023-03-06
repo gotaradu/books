@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const style = {
-  navItems: 'p-5 text-opacity-60 hover:bg-emerald-900',
+  navItems:
+    'p-5 text-opacity-60 hover:bg-emerald-900 max-md:text-xs max-md:w-0 max-md:p-0 flex-1',
 }
 const Header = () => {
   const navigate = useNavigate()
@@ -18,12 +19,12 @@ const Header = () => {
   }
   return (
     <>
-      <nav className="flex bg-verde w-screen justify-around h-24 text-center items-center">
+      <nav className="flex bg-verde w-full justify-around h-24 text-center items-center max-md:text-xs max-md:p-0 max-md:h-16 max-md:m-0 ">
         <Link to="/" className={style.navItems}>
           Home
         </Link>
-        <Link to="#" className={style.navItems}>
-          About
+        <Link to="/posts" className={style.navItems}>
+          Posts
         </Link>
         <div className={style.navItems}>Github</div>
         <div className={style.navItems}>Linkedin</div>
