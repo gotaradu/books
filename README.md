@@ -1,6 +1,6 @@
 # books
 
-Books review app using node.js and react 
+Books review app using node.js with mongodb as database and react for client side 
 
 Users can: 
 * Register and authenticate 
